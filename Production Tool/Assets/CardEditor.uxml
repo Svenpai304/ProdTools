@@ -1,3 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:TextField picking-mode="Ignore" label="Name:" value="Amphetamine Goblin" text="filler text" style="width: 294px; color: rgb(0, 0, 0); position: relative; translate: 922px 88px;" />
+    <ui:VisualElement style="height: 100%; background-color: rgb(221, 156, 107);">
+        <ui:VisualElement style="width: 1220px; background-color: rgb(103, 59, 29); height: 1049px; translate: 683px 16px; border-top-left-radius: 3px; border-bottom-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; flex-basis: auto; position: relative; left: auto;">
+            <ui:TextField picking-mode="Ignore" label="Name: " value="Amphetamine Goblin" text="Amphetamine Goblin" name="Name" max-length="32" is-delayed="false" style="width: 182px; color: rgb(0, 0, 0); position: relative; translate: 922px 88px; justify-content: center; align-items: stretch; flex-direction: column;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>

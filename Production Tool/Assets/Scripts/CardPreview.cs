@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.Burst;
 using UnityEngine;
@@ -10,26 +11,36 @@ public class CardPreview : MonoBehaviour
 {
     private CardData cardData = new();
 
-    [SerializeField]private TMP_Text cardName;
+    [SerializeField] private TMP_Text cardName;
     [SerializeField] private TMP_Text attack, health, tier;
     [SerializeField] private ImageSelector image;
     [SerializeField] private TMP_Text effectDescription;
+    [SerializeField] private Image rarityImage;
+
+    [SerializeField] private Color[] rarityColors;
 
     public void SetCardFromData(CardData _cardData)
     {
-        cardData = _cardData;
-        cardName.SetText(_cardData.cardName);
-        attack.SetText(_cardData.attack.ToString());
-        health.SetText(_cardData.health.ToString());
-        tier.SetText(_cardData.tier.ToString());
-        image.StartCoroutine(image.LoadImage(_cardData.imagePath));
-        effectDescription.SetText(_cardData.effectDescription);
+        SetName(_cardData.cardName);
+        SetAttack(_cardData.attack);
+        SetHealth(_cardData.health);
+        SetTier(_cardData.tier);
+        SetImage(_cardData.imagePath);
+        SetEffectDesc(_cardData.effectDescription);
+        SetRarity(_cardData.rarity);
+        SetTheme(_cardData.theme);
     }
 
     public void SetName(string _name)
     {
         cardName.SetText(_name);
         cardData.cardName = _name;
+    }
+
+    public void SetTags(string _tags)
+    {
+        string[] separatedTags = _tags.Split(',');
+        cardData.tags = separatedTags.ToList();
     }
 
     public void SetAttack(int _attack)
@@ -62,5 +73,17 @@ public class CardPreview : MonoBehaviour
         cardData.effectDescription = _effectDesc;
     }
 
-    
+    public void SetRarity(int _rarity)
+    {
+        if (_rarity >= rarityColors.Length) { _rarity = rarityColors.Length - 1; }
+        rarityImage.color = rarityColors[_rarity];
+        cardData.rarity = _rarity;
+    }
+
+    public void SetTheme(int _theme)
+    {
+        cardData.theme = _theme;
+    }
+
+
 }

@@ -5441,7 +5441,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 915787535}
+        m_TargetAssemblyTypeName: CardPreview, Assembly-CSharp
+        m_MethodName: SetRarity
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &880286967
 MonoBehaviour:
@@ -5953,6 +5965,13 @@ MonoBehaviour:
   tier: {fileID: 997644858}
   image: {fileID: 827471360}
   effectDescription: {fileID: 1800973307}
+  rarityImage: {fileID: 910600615}
+  rarityColors:
+  - {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
+  - {r: 0.15801886, g: 0.6320754, b: 0.3453035, a: 1}
+  - {r: 0.121885024, g: 0.4063257, b: 0.7830189, a: 1}
+  - {r: 0.6037736, g: 0.06550375, b: 0.5825724, a: 1}
+  - {r: 0.6792453, g: 0.5294071, b: 0.11854753, a: 1}
 --- !u!1 &926764995
 GameObject:
   m_ObjectHideFlags: 0
@@ -10172,7 +10191,7 @@ RectTransform:
   m_GameObject: {fileID: 1653323972}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1630571128}
@@ -10180,7 +10199,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -267.36, y: 119.37}
+  m_AnchoredPosition: {x: -267.36, y: 119.369995}
   m_SizeDelta: {x: 195.8344, y: 41.3788}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1653323974
@@ -11260,7 +11279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Card effect
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11287,12 +11306,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 32
+  m_fontSizeMax: 36
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -13451,7 +13470,19 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 915787535}
+        m_TargetAssemblyTypeName: CardPreview, Assembly-CSharp
+        m_MethodName: SetTags
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []

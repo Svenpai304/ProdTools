@@ -29,15 +29,15 @@ public class ImageSelector : MonoBehaviour
 
     public void SelectFile()
     {
-        StartCoroutine(SelectFileCoroutine());
-    }
-    public IEnumerator SelectFileCoroutine()
-    {
-        if (target == null) { yield break; }
+        if (target == null) { return; }
         string[] options = StandaloneFileBrowser.OpenFilePanel("Select image file", Application.persistentDataPath, new ExtensionFilter[1] { filter }, false);
-        if (options.Length == 0) { yield break; }
+        if (options.Length == 0) { return; }
 
         filename = options[0];
+        StartCoroutine(LoadImage(filename));
+    }
+    public IEnumerator LoadImage(string url)
+    {
         SetText();
         UnityWebRequest file = UnityWebRequestTexture.GetTexture("file://" + filename);
         yield return file.SendWebRequest();

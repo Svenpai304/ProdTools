@@ -52,4 +52,41 @@ public class ImageSelector : MonoBehaviour
         textPlaceholder.text = "";
         text.text = filename;
     }
+
+    public void SetScaleX(string str)
+    {
+        float value;
+        try { value = float.Parse(str); }
+        catch { value = 1; }
+        Debug.Log(value);
+        target.uvRect = new Rect(target.uvRect.x, target.uvRect.y, value, target.uvRect.height);
+        CardPreview.Instance.SetImageScale(new Vector2(value, target.uvRect.height));
+    }
+
+    public void SetScaleY(string str)
+    {
+        float value;
+        try { value = float.Parse(str); }
+        catch { value = 1; }
+        target.uvRect = new Rect(target.uvRect.x, target.uvRect.y, target.uvRect.width, value);
+        CardPreview.Instance.SetImageScale(new Vector2(target.uvRect.width, value));
+    }
+
+    public void SetOffsetX(string str)
+    {
+        float value;
+        try { value = float.Parse(str); }
+        catch { value = 0; }
+        target.uvRect = new Rect(value, target.uvRect.y, target.uvRect.width, target.uvRect.height);
+        CardPreview.Instance.SetImageOffset(new Vector2(value, target.uvRect.y));
+    }
+
+    public void SetOffsetY(string str)
+    {
+        float value;
+        try { value = float.Parse(str); }
+        catch { value = 0; }
+        target.uvRect = new Rect(target.uvRect.x, value, target.uvRect.width, target.uvRect.height);
+        CardPreview.Instance.SetImageOffset(new Vector2(target.uvRect.x, value));
+    }
 }

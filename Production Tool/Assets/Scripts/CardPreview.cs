@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class CardPreview : MonoBehaviour
 {
+    public static CardPreview Instance { get; private set; }
     private CardData cardData = new();
 
     [SerializeField] private TMP_Text cardName;
@@ -18,6 +19,11 @@ public class CardPreview : MonoBehaviour
     [SerializeField] private Image rarityImage;
 
     [SerializeField] private Color[] rarityColors;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     public void SetCardFromData(CardData _cardData)
     {
@@ -83,6 +89,16 @@ public class CardPreview : MonoBehaviour
     public void SetTheme(int _theme)
     {
         cardData.theme = _theme;
+    }
+
+    public void SetImageScale(Vector2 _scale)
+    {
+        cardData.imageScale = _scale;
+    }
+
+    public void SetImageOffset(Vector2 _offset)
+    {
+        cardData.imageOffset = _offset;
     }
 
 

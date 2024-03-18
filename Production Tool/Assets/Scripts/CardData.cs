@@ -15,6 +15,6 @@ public class CardData
     public int theme; 
 
     public string effectDescription;
-    public CardEffect effect;
+    public List<CardEffect> effects;
 
 }

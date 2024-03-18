@@ -101,5 +101,10 @@ public class CardPreview : MonoBehaviour
         cardData.imageOffset = _offset;
     }
 
+    public void SetEffects(List<CardEffect> _effects)
+    {
+        cardData.effects = _effects;
+    }
+
 
 }

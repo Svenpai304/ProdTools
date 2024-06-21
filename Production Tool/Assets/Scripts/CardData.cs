@@ -1,8 +1,8 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
+[Serializable]
 public class CardData
 {
     public string cardName;

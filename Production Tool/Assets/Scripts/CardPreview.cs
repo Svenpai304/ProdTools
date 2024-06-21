@@ -1,21 +1,20 @@
-using JetBrains.Annotations;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.Burst;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CardPreview : MonoBehaviour
 {
     public static CardPreview Instance { get; private set; }
-    private CardData cardData = new();
+    [HideInInspector] public CardData cardData = new();
+    private XMLSerializer serializer = new();
 
     [SerializeField] private TMP_Text cardName;
     [SerializeField] private TMP_Text attack, health, tier;
     [SerializeField] private ImageSelector image;
     [SerializeField] private TMP_Text effectDescription;
+    [SerializeField] private EffectHolder effectHolder;
     [SerializeField] private Image rarityImage;
 
     [SerializeField] private Color[] rarityColors;
@@ -33,6 +32,7 @@ public class CardPreview : MonoBehaviour
         SetTier(_cardData.tier);
         SetImage(_cardData.imagePath);
         SetEffectDesc(_cardData.effectDescription);
+        SetEffects(_cardData.effects);
         SetRarity(_cardData.rarity);
         SetTheme(_cardData.theme);
     }
@@ -79,6 +79,12 @@ public class CardPreview : MonoBehaviour
         cardData.effectDescription = _effectDesc;
     }
 
+    public void SetEffects(List<CardEffect> _effects)
+    {
+        effectHolder.SetAllEffects(_effects);
+        cardData.effects = _effects;
+    }
+
     public void SetRarity(int _rarity)
     {
         if (_rarity >= rarityColors.Length) { _rarity = rarityColors.Length - 1; }
@@ -101,9 +107,14 @@ public class CardPreview : MonoBehaviour
         cardData.imageOffset = _offset;
     }
 
-    public void SetEffects(List<CardEffect> _effects)
+    public void SaveCardToFile()
     {
-        cardData.effects = _effects;
+        serializer.Save(cardData);
+    }
+
+    public void LoadCardFromFile()
+    {
+        SetCardFromData(serializer.Load());
     }
 
 

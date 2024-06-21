@@ -1,10 +1,13 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 
+[Serializable]
 public struct CardEffect
 {
     public string name;
     public List<string> triggers;
+    public List<string> targets;
+    public List<string> effects;
+    public List<string> endActions;
 
 }

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardEffect
+public struct CardEffect
 {
     public string name;
-    public List<string> triggers = new();
+    public List<string> triggers;
 
 }

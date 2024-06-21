@@ -7,8 +7,9 @@ public class EffectPartAdder : MonoBehaviour
 {
     private EffectEditor editor;
     private Toggle toggle;
+    private bool setup;
 
-    private void Start()
+    private void Awake()
     {
         editor = FindObjectOfType<EffectEditor>();
         toggle = GetComponent<Toggle>();
@@ -16,6 +17,9 @@ public class EffectPartAdder : MonoBehaviour
 
     public void ToggleEffectPart(bool value)
     {
+        Debug.Log("Toggling effect");
+        if (setup) { setup = false; return; }
+
         if (value)
         {
             editor.AddTrigger(name);
@@ -28,9 +32,8 @@ public class EffectPartAdder : MonoBehaviour
 
     public void SetState(bool value)
     {
-        if (value)
-        {
-            toggle.isOn = !toggle.isOn;
-        }
+        Debug.Log("Setting toggle state");
+        setup = false;
+        toggle.isOn = value;
     }
 }

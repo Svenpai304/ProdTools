@@ -4,16 +4,23 @@ using UnityEngine;
 public class EffectElement : MonoBehaviour
 {
     [SerializeField] private EffectHolder holder;
-    [SerializeField] private CardEffect effect;
+    [SerializeField] private CardEffect effect = new();
     [SerializeField] private TMP_Text nameText;
-    private int index;
+    [SerializeField] private int index;
 
     public void Setup(CardEffect _effect, int _index, EffectHolder _holder)
     {
-        effect = _effect;
-        nameText.text = $"{index}: {_effect.name}";
+        effect.name = _effect.name;
+        effect.triggers = _effect.triggers;
         index = _index;
         holder = _holder;
+        nameText.text = $"{index}: {_effect.name}";
+    }
+
+    public void SetIndex(int _index)
+    {
+        index = _index;
+        nameText.text = $"{index}: {effect.name}";
     }
 
     public void Click()

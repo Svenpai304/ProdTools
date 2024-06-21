@@ -222,7 +222,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 109056812}
+      - m_Target: {fileID: 10964014}
         m_TargetAssemblyTypeName: EffectPartAdder, Assembly-CSharp
         m_MethodName: ToggleEffectPart
         m_Mode: 0
@@ -8246,7 +8246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: 27}
+  m_AnchoredPosition: {x: -85, y: 55.677}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1065014664
@@ -11411,7 +11411,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 109056812}
+      - m_Target: {fileID: 1552105198}
         m_TargetAssemblyTypeName: EffectPartAdder, Assembly-CSharp
         m_MethodName: ToggleEffectPart
         m_Mode: 0

@@ -1571,6 +1571,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eedfe33f038f9e4287e76da8f7cd54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 157079504}
+  dropdown: {fileID: 0}
+  attributeName: 3
   OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2486,6 +2489,7 @@ GameObject:
   - component: {fileID: 311849125}
   - component: {fileID: 311849124}
   - component: {fileID: 311849123}
+  - component: {fileID: 311849126}
   m_Layer: 5
   m_Name: Theme
   m_TagString: Untagged
@@ -2571,7 +2575,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 311849126}
+        m_TargetAssemblyTypeName: IntSetter, Assembly-CSharp
+        m_MethodName: SetInt
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &311849124
 MonoBehaviour:
@@ -2611,6 +2627,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 311849121}
   m_CullTransparentMesh: 1
+--- !u!114 &311849126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311849121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eedfe33f038f9e4287e76da8f7cd54b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
+  dropdown: {fileID: 311849123}
+  attributeName: 10
+  OnValueChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 915787535}
+        m_TargetAssemblyTypeName: CardPreview, Assembly-CSharp
+        m_MethodName: SetTheme
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &329151159
 GameObject:
   m_ObjectHideFlags: 0
@@ -3843,8 +3889,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 915787535}
-        m_TargetAssemblyTypeName: CardPreview, Assembly-CSharp
+      - m_Target: {fileID: 631258519}
+        m_TargetAssemblyTypeName: CardDataManager, Assembly-CSharp
         m_MethodName: LoadCardFromFile
         m_Mode: 1
         m_Arguments:
@@ -4710,6 +4756,7 @@ GameObject:
   - component: {fileID: 631258516}
   - component: {fileID: 631258518}
   - component: {fileID: 631258517}
+  - component: {fileID: 631258519}
   m_Layer: 5
   m_Name: FileManagement
   m_TagString: Untagged
@@ -4778,6 +4825,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631258515}
   m_CullTransparentMesh: 1
+--- !u!114 &631258519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631258515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c6ec4f07fa087c4c9ff2c536d84107d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &643778016
 GameObject:
   m_ObjectHideFlags: 0
@@ -5964,6 +6023,7 @@ GameObject:
   - component: {fileID: 796053991}
   - component: {fileID: 796053990}
   - component: {fileID: 796053989}
+  - component: {fileID: 796053992}
   m_Layer: 5
   m_Name: Class
   m_TagString: Untagged
@@ -6095,6 +6155,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796053987}
   m_CullTransparentMesh: 1
+--- !u!114 &796053992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796053987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eedfe33f038f9e4287e76da8f7cd54b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
+  dropdown: {fileID: 796053989}
+  attributeName: 9
+  OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &797907998
 GameObject:
   m_ObjectHideFlags: 0
@@ -6297,6 +6375,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eedfe33f038f9e4287e76da8f7cd54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 797908000}
+  dropdown: {fileID: 0}
+  attributeName: 2
   OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -6590,6 +6671,10 @@ MonoBehaviour:
   target: {fileID: 1937079337}
   text: {fileID: 1494330654}
   textPlaceholder: {fileID: 139845432}
+  offsetX: {fileID: 1373392170}
+  offsetY: {fileID: 2111337725}
+  scaleX: {fileID: 883450862}
+  scaleY: {fileID: 745882206}
   fileExtensions:
   - png
   - jpg
@@ -6876,6 +6961,7 @@ GameObject:
   - component: {fileID: 880286968}
   - component: {fileID: 880286967}
   - component: {fileID: 880286966}
+  - component: {fileID: 880286969}
   m_Layer: 5
   m_Name: Rarity
   m_TagString: Untagged
@@ -6970,9 +7056,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 915787535}
-        m_TargetAssemblyTypeName: CardPreview, Assembly-CSharp
-        m_MethodName: SetRarity
+      - m_Target: {fileID: 880286969}
+        m_TargetAssemblyTypeName: IntSetter, Assembly-CSharp
+        m_MethodName: SetInt
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7021,6 +7107,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880286964}
   m_CullTransparentMesh: 1
+--- !u!114 &880286969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880286964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eedfe33f038f9e4287e76da8f7cd54b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
+  dropdown: {fileID: 880286966}
+  attributeName: 8
+  OnValueChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 915787535}
+        m_TargetAssemblyTypeName: CardPreview, Assembly-CSharp
+        m_MethodName: SetRarity
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &883450860
 GameObject:
   m_ObjectHideFlags: 0
@@ -7499,26 +7615,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62ed300968117c4ea4611b1567d5ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardData:
-    cardName: 
-    tags: []
-    attack: 0
-    health: 0
-    tier: 0
-    imagePath: 
-    imageScale: {x: 0, y: 0}
-    imageOffset: {x: 0, y: 0}
-    rarity: 0
-    theme: 0
-    effectDescription: 
-    effects: []
   cardName: {fileID: 1904985506}
   attack: {fileID: 598082197}
   health: {fileID: 926764997}
   tier: {fileID: 997644858}
   image: {fileID: 827471360}
   effectDescription: {fileID: 1800973307}
-  effectHolder: {fileID: 0}
   rarityImage: {fileID: 910600615}
   rarityColors:
   - {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
@@ -8531,7 +8633,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1021681336}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 631258519}
+        m_TargetAssemblyTypeName: CardDataManager, Assembly-CSharp
+        m_MethodName: NewCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1021681336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10126,6 +10240,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eedfe33f038f9e4287e76da8f7cd54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 1309053097}
+  dropdown: {fileID: 0}
+  attributeName: 4
   OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -10570,6 +10687,7 @@ GameObject:
   - component: {fileID: 1387298130}
   - component: {fileID: 1387298129}
   - component: {fileID: 1387298128}
+  - component: {fileID: 1387298131}
   m_Layer: 5
   m_Name: EffectDescription
   m_TagString: Untagged
@@ -10651,7 +10769,7 @@ MonoBehaviour:
   m_InputType: 0
   m_AsteriskChar: 42
   m_KeyboardType: 0
-  m_LineType: 0
+  m_LineType: 1
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
@@ -10679,9 +10797,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 915787535}
-        m_TargetAssemblyTypeName: CardPreview, Assembly-CSharp
-        m_MethodName: SetEffectDesc
+      - m_Target: {fileID: 1387298131}
+        m_TargetAssemblyTypeName: StringSetter, Assembly-CSharp
+        m_MethodName: SetString
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10707,7 +10825,7 @@ MonoBehaviour:
   m_ResetOnDeActivation: 1
   m_RestoreOriginalTextOnEscape: 1
   m_isRichTextEditingAllowed: 0
-  m_LineLimit: 0
+  m_LineLimit: 4
   m_InputValidator: {fileID: 0}
 --- !u!114 &1387298129
 MonoBehaviour:
@@ -10747,6 +10865,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1387298126}
   m_CullTransparentMesh: 1
+--- !u!114 &1387298131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387298126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5c2b683ab0a084da9cd142c7a81179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1387298128}
+  attributeName: 11
+  OnValueChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 915787535}
+        m_TargetAssemblyTypeName: CardPreview, Assembly-CSharp
+        m_MethodName: SetEffectDesc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1406591415
 GameObject:
   m_ObjectHideFlags: 0
@@ -12352,7 +12499,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -13143,8 +13290,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 915787535}
-        m_TargetAssemblyTypeName: CardPreview, Assembly-CSharp
+      - m_Target: {fileID: 631258519}
+        m_TargetAssemblyTypeName: CardDataManager, Assembly-CSharp
         m_MethodName: SaveCardToFile
         m_Mode: 1
         m_Arguments:
@@ -13428,6 +13575,7 @@ GameObject:
   - component: {fileID: 1717114629}
   - component: {fileID: 1717114628}
   - component: {fileID: 1717114627}
+  - component: {fileID: 1717114630}
   m_Layer: 5
   m_Name: Card name
   m_TagString: Untagged
@@ -13537,25 +13685,13 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 915787535}
-        m_TargetAssemblyTypeName: CardPreview, Assembly-CSharp
-        m_MethodName: SetName
+      - m_Target: {fileID: 1717114630}
+        m_TargetAssemblyTypeName: StringSetter, Assembly-CSharp
+        m_MethodName: SetString
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -13617,6 +13753,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717114625}
   m_CullTransparentMesh: 1
+--- !u!114 &1717114630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717114625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5c2b683ab0a084da9cd142c7a81179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1717114627}
+  attributeName: 0
+  OnValueChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 915787535}
+        m_TargetAssemblyTypeName: CardPreview, Assembly-CSharp
+        m_MethodName: SetName
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1736143977
 GameObject:
   m_ObjectHideFlags: 0
@@ -16234,6 +16399,7 @@ GameObject:
   - component: {fileID: 2136729533}
   - component: {fileID: 2136729532}
   - component: {fileID: 2136729531}
+  - component: {fileID: 2136729534}
   m_Layer: 5
   m_Name: Tags
   m_TagString: Untagged
@@ -16325,9 +16491,9 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 915787535}
-        m_TargetAssemblyTypeName: CardPreview, Assembly-CSharp
-        m_MethodName: SetTags
+      - m_Target: {fileID: 2136729534}
+        m_TargetAssemblyTypeName: StringSetter, Assembly-CSharp
+        m_MethodName: SetSeparatedString
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16411,3 +16577,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136729529}
   m_CullTransparentMesh: 1
+--- !u!114 &2136729534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136729529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5c2b683ab0a084da9cd142c7a81179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 2136729531}
+  attributeName: 1
+  OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []

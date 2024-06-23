@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectHolder : MonoBehaviour
+public class EffectHolder : MonoBehaviour, ICardAttributeField
 {
     [SerializeField] private float elementSpacing;
     [SerializeField] private EffectEditor editor;
@@ -10,14 +10,26 @@ public class EffectHolder : MonoBehaviour
     [SerializeField] private List<EffectElement> elements = new();
     private int lastIndex;
 
-    public void SetAllEffects(List<CardEffect> _effects)
+    private void Start()
     {
+        CardDataManager.Instance.SetAttributeField(CardAttrb.effects, this);
+    }
+
+    public void SetFieldValue(CardAttrb attrb, object value)
+    {
+        if(attrb != CardAttrb.effects) { return; }
+        List<CardEffect> _effects = new();
+        if (value != default && ((CardEffect[])value).Length > 0)
+        {
+            _effects.AddRange((CardEffect[])value);
+        }
         if (elements.Count > 0)
         {
             foreach (EffectElement element in elements)
             {
                 Destroy(element.gameObject);
             }
+            elements.Clear();
         }
         for (int i = 0; i < _effects.Count; i++)
         {
@@ -48,7 +60,6 @@ public class EffectHolder : MonoBehaviour
         elements.RemoveAt(lastIndex);
         for (int i = lastIndex; i < elements.Count; i++)
         {
-            Debug.Log("Moved element " + i);
             elements[i].transform.Translate(new Vector2(0, elementSpacing));
             elements[i].SetIndex(i);
         }
@@ -58,7 +69,6 @@ public class EffectHolder : MonoBehaviour
     {
         if (index < elements.Count)
         {
-            Debug.Log("Setting effects: " + effect.triggers.Count);
             elements[index].Setup(effect, index, this);
         }
         else
@@ -68,5 +78,16 @@ public class EffectHolder : MonoBehaviour
             newElement.Setup(effect, index, this);
             elements.Add(newElement);
         }
+        SaveEffects();
+    }
+
+    public void SaveEffects()
+    {
+        List<CardEffect> effects = new();
+        foreach (EffectElement element in elements)
+        {
+            effects.Add(element.effect);
+        }
+        CardDataManager.Instance.SetCardAttribute(CardAttrb.effects, effects.ToArray());
     }
 }

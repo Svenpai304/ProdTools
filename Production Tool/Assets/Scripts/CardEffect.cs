@@ -5,9 +5,9 @@ using System.Collections.Generic;
 public struct CardEffect
 {
     public string name;
-    public List<string> triggers;
-    public List<string> targets;
-    public List<string> effects;
-    public List<string> endActions;
+    public string[] triggers;
+    public string[] targets;
+    public string[] effects;
+    public string[] endActions;
 
 }

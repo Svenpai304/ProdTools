@@ -1,20 +1,38 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
 public class CardData
 {
-    public string cardName;
-    public List<string> tags = new();
-    public int attack, health, tier;
+    [SerializeField]public Dictionary<CardAttrb, object> attributes = new();
 
-    public string imagePath;
-    public Vector2 imageScale, imageOffset;
-    public int rarity;
-    public int theme; 
-
-    public string effectDescription;
-    public List<CardEffect> effects;
-
+    public static T GetAttribute<T>(CardAttrb attrb, CardData data)
+    {
+        if (data.attributes.ContainsKey(attrb))
+        {
+            return (T)data.attributes[attrb];
+        }
+        else
+        {
+            return default;
+        }
+    }
 }
+
+public enum CardAttrb { 
+    name, 
+    tags, 
+    attack,  
+    health, 
+    tier, 
+    imagePath, 
+    imageScale, 
+    imageOffset, 
+    rarity, 
+    cardClass,
+    theme,
+    effectDesc, 
+    effects 
+};

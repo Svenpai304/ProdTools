@@ -13,9 +13,8 @@ public class EffectPartAdder : MonoBehaviour
         toggle = GetComponent<Toggle>();
     }
 
-    public void ToggleEffectPart(bool value)
+    public void ToggleTrigger(bool value)
     {
-        Debug.Log("Toggling effect");
         if (setup) { setup = false; return; }
 
         if (value)
@@ -25,6 +24,47 @@ public class EffectPartAdder : MonoBehaviour
         else
         {
             editor.RemoveTrigger(name);
+        }
+    }
+
+    public void ToggleAction(bool value)
+    {
+        if (setup) { setup = false; return; }
+
+        if (value)
+        {
+            editor.AddAction(name);
+        }
+        else
+        {
+            editor.RemoveAction(name);
+        }
+    }
+
+    public void ToggleTarget(bool value)
+    {
+        if (setup) { setup = false; return; }
+
+        if (value)
+        {
+            editor.AddAction(name);
+        }
+        else
+        {
+            editor.RemoveAction(name);
+        }
+    }
+    public void ToggleEndAction(bool value)
+    {
+        if (setup) { setup = false; return; }
+
+        if (value)
+        {
+            editor.AddAction(name);
+        }
+        else
+        {
+            editor.RemoveAction(name);
         }
     }
 

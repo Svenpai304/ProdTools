@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Windows.Forms;
 using UnityEngine;
 
 public class EffectEditor : MonoBehaviour
@@ -9,10 +10,11 @@ public class EffectEditor : MonoBehaviour
     private int currentIndex;
 
     private List<EffectPartAdder> effectPartAdders = new();
+    private List<EffectValueSetter> effectValueSetters = new();
 
     private List<string> currentTriggers = new();
     private List<string> currentTargets = new();
-    private List<string> currentEffects = new();
+    private List<string> currentActions = new();
     private List<string> currentEndActions = new();
 
 
@@ -20,6 +22,7 @@ public class EffectEditor : MonoBehaviour
     {
         if (effectPartAdders.Count > 0) { return; }
         effectPartAdders.AddRange(GetComponentsInChildren<EffectPartAdder>());
+        effectValueSetters.AddRange(GetComponentsInChildren<EffectValueSetter>());
         Debug.Log(effectPartAdders.Count);
         holder = FindObjectOfType<EffectHolder>();
     }
@@ -36,7 +39,7 @@ public class EffectEditor : MonoBehaviour
     {
         currentEffect.triggers = currentTriggers.ToArray();
         currentEffect.targets = currentTargets.ToArray();
-        currentEffect.effects = currentEffects.ToArray();
+        currentEffect.actions = currentActions.ToArray();
         currentEffect.endActions = currentEndActions.ToArray();
         Debug.Log("Closing editor with " + currentEffect.triggers.Length + " triggers");
         holder.SetEffectElement(currentEffect, currentIndex);
@@ -49,11 +52,11 @@ public class EffectEditor : MonoBehaviour
         currentEffect = effect;
         currentEffect.triggers ??= new string[0];
         currentEffect.targets ??= new string[0];
-        currentEffect.effects ??= new string[0];
+        currentEffect.actions ??= new string[0];
         currentEffect.endActions ??= new string[0];
         currentTriggers.Clear();
         currentTargets.Clear();
-        currentEffects.Clear();
+        currentActions.Clear();
         currentEndActions.Clear();
         if (currentEffect.triggers.Length > 0)
         {
@@ -63,9 +66,9 @@ public class EffectEditor : MonoBehaviour
         {
             currentTargets.AddRange(currentEffect.targets);
         }
-        if (currentEffect.effects.Length > 0) 
+        if (currentEffect.actions.Length > 0) 
         { 
-            currentEffects.AddRange(currentEffect.effects); 
+            currentActions.AddRange(currentEffect.actions); 
         }
         if (currentEffect.endActions.Length > 0)
         {
@@ -73,7 +76,17 @@ public class EffectEditor : MonoBehaviour
         }
         foreach (EffectPartAdder part in effectPartAdders)
         {
-            part.SetState(currentTriggers.Contains(part.name) || currentTargets.Contains(part.name) || currentEffects.Contains(part.name) || currentEndActions.Contains(part.name));
+            part.SetState(currentTriggers.Contains(part.name) || currentTargets.Contains(part.name) || currentActions.Contains(part.name) || currentEndActions.Contains(part.name));
+        }
+        foreach(EffectValueSetter value in effectValueSetters)
+        {
+            switch(value.valueType)
+            {
+                case EffectValueSetter.EffectValueType.NumericAction: value.numericValue.text = currentEffect.actionNumericalValue.ToString(); break;
+                case EffectValueSetter.EffectValueType.NumericTarget: value.numericValue.text = currentEffect.targetNumericalValue.ToString(); break;
+                case EffectValueSetter.EffectValueType.TextAction: value.textValue.text = currentEffect.actionTextValue; break;
+                case EffectValueSetter.EffectValueType.TextTarget: value.textValue.text = currentEffect.targetTextValue; break;
+            }
         }
     }
 
@@ -93,5 +106,70 @@ public class EffectEditor : MonoBehaviour
         {
             currentTriggers.Remove(id);
         }
+    }
+
+    public void AddAction(string id)
+    {
+        if (!currentActions.Contains(id))
+        {
+            currentActions.Add(id);
+        }
+    }
+    public void RemoveAction(string id)
+    {
+        if (currentActions.Contains(id))
+        {
+            currentActions.Remove(id);
+        }
+    }
+
+    public void AddTarget(string id)
+    {
+        if (!currentTargets.Contains(id))
+        {
+            currentTargets.Add(id);
+        }
+    }
+    public void RemoveTarget(string id)
+    {
+        if (currentTargets.Contains(id))
+        {
+            currentTargets.Remove(id);
+        }
+    }
+
+    public void AddEndAction(string id)
+    {
+        if (!currentActions.Contains(id))
+        {
+            currentActions.Add(id);
+        }
+    }
+    public void RemoveEndAction(string id)
+    {
+        if (currentActions.Contains(id))
+        {
+            currentActions.Remove(id);
+        }
+    }
+
+    public void SetActionNumericalValue(float value)
+    {
+        currentEffect.actionNumericalValue = value;
+    }
+
+    public void SetActionTextValue(string value)
+    {
+        currentEffect.actionTextValue = value;
+    }
+
+    public void SetTargetNumericalValue(float value)
+    {
+        currentEffect.targetNumericalValue = value;
+    }
+
+    public void SetTargetTextValue(string value)
+    {
+        currentEffect.targetTextValue = value;
     }
 }

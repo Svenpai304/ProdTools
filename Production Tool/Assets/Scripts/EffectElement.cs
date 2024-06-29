@@ -13,7 +13,7 @@ public class EffectElement : MonoBehaviour
         effect = _effect;
         index = _index;
         holder = _holder;
-        nameText.text = $"{index}: {_effect.name}";
+        nameText.text = NameFromEffect(effect, index);
     }
 
     public void SetIndex(int _index)
@@ -25,5 +25,21 @@ public class EffectElement : MonoBehaviour
     public void Click()
     {
         holder.EditEffect(effect, index);
+    }
+
+    private string NameFromEffect(CardEffect effect, int index)
+    {
+        string trigger = string.Empty;
+        string action = string.Empty;
+
+        if(effect.triggers.Length > 0)
+        {
+            trigger = effect.triggers[0];
+        }
+        if (effect.actions.Length > 0)
+        {
+            action = effect.actions[0];
+        }
+        return $"{index}. {trigger}: {action}";
     }
 }

@@ -19,7 +19,7 @@ public class EffectElement : MonoBehaviour
     public void SetIndex(int _index)
     {
         index = _index;
-        nameText.text = $"{index}: {effect.name}";
+        nameText.text = NameFromEffect(effect, index);
     }
 
     public void Click()

@@ -18571,7 +18571,7 @@ GameObject:
   - component: {fileID: 1571240552}
   - component: {fileID: 1571240554}
   - component: {fileID: 1571240555}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: HoverTextHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18610,38 +18610,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d85d3e055a6064b941af1f9413ef18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 0
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 2059696091}
   hoverTextPrefab: {fileID: 3339755080203995477, guid: a5a962379ad71e3478b29494c5c0248e, type: 3}
   content: Tags for the card's game effects. Add multiple by separating with commas.
-  maxWidth: 600
+  hitboxLayer:
+    serializedVersion: 2
+    m_Bits: 64
   timeThreshold: 1
 --- !u!222 &1571240553
 CanvasRenderer:
@@ -24482,7 +24455,7 @@ GameObject:
   - component: {fileID: 2045197744}
   - component: {fileID: 2045197743}
   - component: {fileID: 2045197745}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: HoverTextHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24521,38 +24494,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d85d3e055a6064b941af1f9413ef18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 0
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 2059696091}
   hoverTextPrefab: {fileID: 3339755080203995477, guid: a5a962379ad71e3478b29494c5c0248e, type: 3}
   content: The card's effects. Add new effects, or remove the last effect edited.
-  maxWidth: 600
+  hitboxLayer:
+    serializedVersion: 2
+    m_Bits: 64
   timeThreshold: 1
 --- !u!114 &2045197743
 MonoBehaviour:

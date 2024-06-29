@@ -74,7 +74,7 @@ public class HoverText : MonoBehaviour
     private Vector3 previousMousePos = new();
     private bool IsHoveredOver()
     {
-        bool result = PointInBounds(Input.mousePosition) && gameObject.activeInHierarchy && previousMousePos == Input.mousePosition;
+        bool result = gameObject.activeInHierarchy && previousMousePos == Input.mousePosition && PointInBounds(Input.mousePosition);
         previousMousePos = Input.mousePosition;
         return result;
     }

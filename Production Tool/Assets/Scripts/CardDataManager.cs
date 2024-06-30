@@ -11,12 +11,12 @@ public class CardDataManager : MonoBehaviour
     private readonly Dictionary<CardAttrb, ICardAttributeField> attributeFields = new();
     private readonly Serializer serializer = new();
 
-    private List<CardTab> tabs = new();
+    private readonly List<CardTab> tabs = new();
     [SerializeField] private GameObject tabPrefab;
     [SerializeField] private Transform tabParent;
     [SerializeField] private Vector2 tabOffset;
+    [SerializeField] private int maxTabs;
 
-    // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
@@ -27,8 +27,13 @@ public class CardDataManager : MonoBehaviour
 
     public void SetCardAttribute(CardAttrb key, object value)
     {
+        if (CardData.attributes.TryGetValue(key, out object attr) && attr == value)
+        {
+            return;
+        }
         Debug.Log("attribute set: " + value.ToString());
         CardData.attributes[key] = value;
+        tabs[currentIndex].SetUnsavedFlag(true);
     }
 
     public void SetAttributeField(CardAttrb attrb, ICardAttributeField field)
@@ -45,18 +50,30 @@ public class CardDataManager : MonoBehaviour
 
     public void SaveCardToFile()
     {
+        try { tabs[currentIndex].SetTabName(CardData.attributes[CardAttrb.name].ToString()); }
+        catch { Debug.Log("No valid name in card data"); }
         serializer.Save(CardData);
+        tabs[currentIndex].SetUnsavedFlag(false);
     }
 
     public void LoadCardFromFile()
     {
-        CardData = serializer.Load();
-        CardPreview.Instance.SetCardFromData(CardData);
-        SetAttributeFields(CardData);
+        if(cards.Count >= maxTabs) { return; }
+        CardData data = serializer.Load();
+        if (data != null)
+        {
+            cards.Add(data);
+            SetupNewCardTab();
+
+            CardPreview.Instance.SetCardFromData(CardData);
+            SetAttributeFields(CardData);
+            tabs[currentIndex].SetUnsavedFlag(false);
+        }
     }
 
     public void NewCard()
     {
+        SetupNewCardTab();
         CardData = new();
         CardPreview.Instance.SetCardFromData(CardData);
         SetAttributeFields(CardData);
@@ -64,20 +81,35 @@ public class CardDataManager : MonoBehaviour
 
     public void SetActiveIndex(int index)
     {
-        if (cards.Count < index) { return; }
+        if (cards.Count <= index || currentIndex == index) { return; }
 
+        bool unsavedFlagActive = tabs[currentIndex].IsUnsaved;
+        int previousIndex = currentIndex;
         cards[currentIndex] = CardData;
+        Debug.Log(currentIndex);
+        tabs[currentIndex].SetTabActive(false);
         currentIndex = index;
         CardData = cards[index];
+        tabs[currentIndex].SetTabActive(true);
         CardPreview.Instance.SetCardFromData(CardData);
         SetAttributeFields(CardData);
+        tabs[previousIndex].SetUnsavedFlag(unsavedFlagActive);
     }
 
     private void SetupNewCardTab()
     {
         tabs.Add(Instantiate(tabPrefab, tabParent).GetComponent<CardTab>());
-        tabs[^1].Setup(tabs.Count - 1, tabOffset);
-        tabs[^1].SetTabName(CardData.attributes[CardAttrb.name].ToString());
+        currentIndex = tabs.Count - 1;
+        tabs[^1].Setup(currentIndex, tabOffset * currentIndex);
+        if (CardData.attributes.ContainsKey(CardAttrb.name))
+        {
+            tabs[^1].SetTabName(CardData.attributes[CardAttrb.name].ToString());
+        }
+        else
+        {
+            tabs[^1].SetTabName("New card");
+        }
+        SetActiveIndex(currentIndex);
     }
 
     private void SetAttributeFields(CardData cardData)

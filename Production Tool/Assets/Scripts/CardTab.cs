@@ -1,12 +1,17 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardTab : MonoBehaviour
 {
-    public bool ActiveTab;
+    public bool IsUnsaved { get { return unsavedFlag.activeSelf; } }
     private int index;
     [SerializeField] private TMP_Text text;
     [SerializeField] private GameObject unsavedFlag;
+    [SerializeField] private Image background;
+    [SerializeField] private Color inactiveColor;
+    [SerializeField] private Color activeColor;
+
 
     public void Setup(int _index, Vector2 _offset)
     {
@@ -27,5 +32,10 @@ public class CardTab : MonoBehaviour
     public void SetUnsavedFlag(bool flag)
     {
         unsavedFlag.SetActive(flag);
+    }
+
+    public void SetTabActive(bool active)
+    {
+        background.color = active ? activeColor : inactiveColor;
     }
 }

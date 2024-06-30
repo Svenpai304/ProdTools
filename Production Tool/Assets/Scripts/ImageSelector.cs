@@ -45,24 +45,29 @@ public class ImageSelector : MonoBehaviour, ICardAttributeField
     public IEnumerator LoadImage(string url)
     {
         if (loading || url == null) { yield break; }
+        if(url == "Invalid path") { HandleInvalidPath(); yield break; }
+
         loading = true;
-        SetText();
+        SetText(url);
         Debug.Log("Loading image: " + url);
         var finalPath = Path.Combine("file://", url);
         UnityWebRequest file = UnityWebRequestTexture.GetTexture(finalPath);
         yield return file.SendWebRequest();
         loading = false;
-        if (file.result != UnityWebRequest.Result.Success) { Debug.Log("Failed to load image: " + file.result); yield break; }
+        if (file.result != UnityWebRequest.Result.Success) 
+        {
+            HandleInvalidPath(); yield break; 
+        }
 
         Texture2D texture = (((DownloadHandlerTexture)file.downloadHandler).texture);
         target.texture = texture;
         CardDataManager.Instance.SetCardAttribute(CardAttrb.imagePath, url);
     }
 
-    private void SetText()
+    private void SetText(string name)
     {
         textPlaceholder.text = "";
-        text.text = filename;
+        text.text = name;
     }
 
     public void SetScaleX(string str)
@@ -71,7 +76,7 @@ public class ImageSelector : MonoBehaviour, ICardAttributeField
         try { value = float.Parse(str); }
         catch { value = 1; }
         target.uvRect = new Rect(target.uvRect.x, target.uvRect.y, value, target.uvRect.height);
-        CardDataManager.Instance.SetCardAttribute(CardAttrb.imageOffset, new float[] { target.uvRect.size.x, target.uvRect.size.y });
+        CardDataManager.Instance.SetCardAttribute(CardAttrb.imageScale, new float[] { target.uvRect.size.x, target.uvRect.size.y });
     }
 
     public void SetScaleY(string str)
@@ -80,7 +85,7 @@ public class ImageSelector : MonoBehaviour, ICardAttributeField
         try { value = float.Parse(str); }
         catch { value = 1; }
         target.uvRect = new Rect(target.uvRect.x, target.uvRect.y, target.uvRect.width, value);
-        CardDataManager.Instance.SetCardAttribute(CardAttrb.imageOffset, new float[] { target.uvRect.size.x, target.uvRect.size.y });
+        CardDataManager.Instance.SetCardAttribute(CardAttrb.imageScale, new float[] { target.uvRect.size.x, target.uvRect.size.y });
     }
 
     public void SetOffsetX(string str)
@@ -106,10 +111,14 @@ public class ImageSelector : MonoBehaviour, ICardAttributeField
         switch (attrb)
         {
             case CardAttrb.imagePath:
-                if (value == default || value == null || ((string)value).Length < 1) { break; }
+                if (value == default || value == null || ((string)value).Length < 1)
+                {
+                    HandleInvalidPath();
+                    break; 
+                }
                 StartCoroutine(LoadImage((string)value)); break;
             case CardAttrb.imageOffset:
-                if (value == default) { value = new float[] { 1, 1 }; }
+                if (value == default) { value = new float[] { 0, 0 }; }
                 SetOffsetX(((float[])value)[0].ToString());
                 SetOffsetY(((float[])value)[1].ToString());
                 offsetX.text = ((float[])value)[0].ToString();
@@ -121,5 +130,13 @@ public class ImageSelector : MonoBehaviour, ICardAttributeField
                 scaleX.text = ((float[])value)[0].ToString();
                 scaleY.text = ((float[])value)[1].ToString(); break;
         }
+    }
+
+    private void HandleInvalidPath()
+    {
+        target.texture = null;
+        SetText("Invalid path");
+        CardDataManager.Instance.SetCardAttribute(CardAttrb.imagePath, "Invalid path");
+        Debug.Log("Failed to load image: Invalid path");
     }
 }

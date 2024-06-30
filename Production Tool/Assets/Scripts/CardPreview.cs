@@ -70,16 +70,6 @@ public class CardPreview : MonoBehaviour
 
     public void SetTheme(int _theme)
     {
-
-    }
-
-    public void SetImageScale(Vector2 _scale)
-    {
-
-    }
-
-    public void SetImageOffset(Vector2 _offset)
-    {
-
+        //yes this definitely does something! i absolutely did not forget to implement it!!
     }
 }

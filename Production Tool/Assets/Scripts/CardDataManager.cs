@@ -125,4 +125,13 @@ public class CardDataManager : MonoBehaviour
         tabs[previousIndex].SetTabActive(false);
         tabs[previousIndex].SetUnsavedFlag(previousUnsaved);
     }
+
+    public bool IsProgressSaved()
+    {
+        foreach(var tab in tabs)
+        {
+            if (tab.IsUnsaved) { return false; }
+        }
+        return true;
+    }
 }

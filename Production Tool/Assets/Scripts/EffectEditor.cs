@@ -65,9 +65,9 @@ public class EffectEditor : MonoBehaviour
         {
             currentTargets.AddRange(currentEffect.targets);
         }
-        if (currentEffect.actions.Length > 0) 
-        { 
-            currentActions.AddRange(currentEffect.actions); 
+        if (currentEffect.actions.Length > 0)
+        {
+            currentActions.AddRange(currentEffect.actions);
         }
         if (currentEffect.endActions.Length > 0)
         {
@@ -77,9 +77,9 @@ public class EffectEditor : MonoBehaviour
         {
             part.SetState(currentTriggers.Contains(part.name) || currentTargets.Contains(part.name) || currentActions.Contains(part.name) || currentEndActions.Contains(part.name));
         }
-        foreach(EffectValueSetter value in effectValueSetters)
+        foreach (EffectValueSetter value in effectValueSetters)
         {
-            switch(value.valueType)
+            switch (value.valueType)
             {
                 case EffectValueSetter.EffectValueType.NumericAction: value.numericValue.text = currentEffect.actionNumericalValue.ToString(); break;
                 case EffectValueSetter.EffectValueType.NumericTarget: value.numericValue.text = currentEffect.targetNumericalValue.ToString(); break;
@@ -139,16 +139,16 @@ public class EffectEditor : MonoBehaviour
 
     public void AddEndAction(string id)
     {
-        if (!currentActions.Contains(id))
+        if (!currentEndActions.Contains(id))
         {
-            currentActions.Add(id);
+            currentEndActions.Add(id);
         }
     }
     public void RemoveEndAction(string id)
     {
-        if (currentActions.Contains(id))
+        if (currentEndActions.Contains(id))
         {
-            currentActions.Remove(id);
+            currentEndActions.Remove(id);
         }
     }
 

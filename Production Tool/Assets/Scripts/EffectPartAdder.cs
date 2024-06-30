@@ -47,11 +47,11 @@ public class EffectPartAdder : MonoBehaviour
 
         if (value)
         {
-            editor.AddAction(name);
+            editor.AddTarget(name);
         }
         else
         {
-            editor.RemoveAction(name);
+            editor.RemoveTarget(name);
         }
     }
     public void ToggleEndAction(bool value)
@@ -60,11 +60,11 @@ public class EffectPartAdder : MonoBehaviour
 
         if (value)
         {
-            editor.AddAction(name);
+            editor.AddEndAction(name);
         }
         else
         {
-            editor.RemoveAction(name);
+            editor.RemoveEndAction(name);
         }
     }
 

@@ -6,7 +6,7 @@ public class EffectValueSetter : MonoBehaviour
     private EffectEditor editor;
     public TMP_InputField textValue;
     public TMP_InputField numericValue;
-    public enum EffectValueType { NumericAction, NumericTarget, TextAction,  TextTarget }
+    public enum EffectValueType { NumericAction, NumericTarget, TextAction, TextTarget }
     public EffectValueType valueType;
 
     private void Awake()

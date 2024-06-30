@@ -7,7 +7,7 @@ public class CardDataManager : MonoBehaviour
 
     [HideInInspector] public List<CardData> cards = new();
     [HideInInspector] public CardData CardData { get { return cards[currentIndex]; } set { cards[currentIndex] = value; } }
-    public int currentIndex;
+    public int currentIndex = 0;
     private readonly Dictionary<CardAttrb, ICardAttributeField> attributeFields = new();
     private readonly Serializer serializer = new();
 
@@ -22,7 +22,6 @@ public class CardDataManager : MonoBehaviour
         Instance = this;
         cards.Add(new CardData());
         SetupNewCardTab();
-        currentIndex = 0;
     }
 
     public void SetCardAttribute(CardAttrb key, object value)
@@ -31,7 +30,7 @@ public class CardDataManager : MonoBehaviour
         {
             return;
         }
-        Debug.Log("attribute set: " + value.ToString());
+        //Debug.Log("attribute set: " + value.ToString());
         CardData.attributes[key] = value;
         tabs[currentIndex].SetUnsavedFlag(true);
     }
@@ -45,6 +44,19 @@ public class CardDataManager : MonoBehaviour
         else
         {
             attributeFields.Add(attrb, field);
+        }
+    }
+    private void SetAttributeFieldValues(CardData cardData)
+    {
+        foreach (CardAttrb attrb in attributeFields.Keys)
+        {
+            object value;
+            if (cardData.attributes.ContainsKey(attrb))
+            {
+                value = cardData.attributes[attrb];
+            }
+            else { value = default; }
+            attributeFields[attrb].SetFieldValue(attrb, value);
         }
     }
 
@@ -66,40 +78,24 @@ public class CardDataManager : MonoBehaviour
             SetupNewCardTab();
 
             CardPreview.Instance.SetCardFromData(CardData);
-            SetAttributeFields(CardData);
+            SetAttributeFieldValues(CardData);
             tabs[currentIndex].SetUnsavedFlag(false);
         }
     }
 
     public void NewCard()
     {
+        if (cards.Count >= maxTabs) { return; }
+        cards.Add(new CardData());
         SetupNewCardTab();
-        CardData = new();
         CardPreview.Instance.SetCardFromData(CardData);
-        SetAttributeFields(CardData);
-    }
-
-    public void SetActiveIndex(int index)
-    {
-        if (cards.Count <= index || currentIndex == index) { return; }
-
-        bool unsavedFlagActive = tabs[currentIndex].IsUnsaved;
-        int previousIndex = currentIndex;
-        cards[currentIndex] = CardData;
-        Debug.Log(currentIndex);
-        tabs[currentIndex].SetTabActive(false);
-        currentIndex = index;
-        CardData = cards[index];
-        tabs[currentIndex].SetTabActive(true);
-        CardPreview.Instance.SetCardFromData(CardData);
-        SetAttributeFields(CardData);
-        tabs[previousIndex].SetUnsavedFlag(unsavedFlagActive);
+        SetAttributeFieldValues(CardData);
     }
 
     private void SetupNewCardTab()
     {
         tabs.Add(Instantiate(tabPrefab, tabParent).GetComponent<CardTab>());
-        currentIndex = tabs.Count - 1;
+        SetActiveIndex(tabs.Count - 1);
         tabs[^1].Setup(currentIndex, tabOffset * currentIndex);
         if (CardData.attributes.ContainsKey(CardAttrb.name))
         {
@@ -109,20 +105,24 @@ public class CardDataManager : MonoBehaviour
         {
             tabs[^1].SetTabName("New card");
         }
-        SetActiveIndex(currentIndex);
     }
 
-    private void SetAttributeFields(CardData cardData)
+    public void SetActiveIndex(int index)
     {
-        foreach (CardAttrb attrb in attributeFields.Keys)
-        {
-            object value;
-            if (cardData.attributes.ContainsKey(attrb))
-            {
-                value = cardData.attributes[attrb];
-            }
-            else { value = default; }
-            attributeFields[attrb].SetFieldValue(attrb, value);
-        }
+        if (cards.Count <= index || currentIndex == index) { return; }
+
+        bool previousUnsaved = tabs[currentIndex].IsUnsaved;
+        int previousIndex = currentIndex;
+        cards[currentIndex] = CardData;
+        Debug.Log(currentIndex);
+        currentIndex = index;
+        CardData = cards[index];
+        tabs[currentIndex].SetTabActive(true);
+        bool unsaved = tabs[currentIndex].IsUnsaved;
+        CardPreview.Instance.SetCardFromData(CardData);
+        SetAttributeFieldValues(CardData);
+        tabs[currentIndex].SetUnsavedFlag(unsaved);
+        tabs[previousIndex].SetTabActive(false);
+        tabs[previousIndex].SetUnsavedFlag(previousUnsaved);
     }
 }

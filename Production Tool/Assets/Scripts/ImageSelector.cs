@@ -13,7 +13,7 @@ public class ImageSelector : MonoBehaviour, ICardAttributeField
     public TMP_Text textPlaceholder;
     public TMP_InputField offsetX, offsetY, scaleX, scaleY;
     public string[] fileExtensions;
-    private ExtensionFilter filter = new();
+    private ExtensionFilter filter = new(); 
     public string filename;
 
     private bool loading = false;
